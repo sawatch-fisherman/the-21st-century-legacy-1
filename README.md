@@ -22,3 +22,8 @@ APP_PORT=8085
 ``SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel.sessions' doesn't exist (Connection: mysql, SQL: select * from `sessions` where `id` = HNvVANYnMjcln0wtmeePubgC2m2JA1hk4VUiVOIy limit ``
 
 
+
+
+# プラグインのインストール
+- Swaggerの導入
+``./vendor/bin/sail composer require --dev "darkaonline/l5-swagger"``

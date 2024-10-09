@@ -30,6 +30,19 @@ APP_PORT=8085
 
 
 # Swaggerを試すために作成した外部API関連のコマンド集
-- コントローラーを作成
-``./vendor/bin/sail php artisan make:controller UserController --api``
+- API用コントローラーを作成(create,editメソッドが自動で省かれる)
+
+``./vendor/bin/sail php artisan make:controller Api/UserController --api``
+
+
+- Resourceクラスの作成(レスポンスデータをJSON形式に変換)
+``./vendor/bin/sail php artisan make:resource UserResource``
+
+
+# その他コマンド
+
+- Webインターフェース用コントローラーを作成(create,editメソッドが自動で省かれる)
+
+``./vendor/bin/sail php artisan make:controller UserController``
+
 

@@ -27,3 +27,9 @@ APP_PORT=8085
 # プラグインのインストール
 - Swaggerの導入
 ``./vendor/bin/sail composer require --dev "darkaonline/l5-swagger"``
+
+
+# Swaggerを試すために作成した外部API関連のコマンド集
+- コントローラーを作成
+``./vendor/bin/sail php artisan make:controller UserController --api``
+

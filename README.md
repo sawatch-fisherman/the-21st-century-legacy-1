@@ -45,4 +45,17 @@ APP_PORT=8085
 
 ``./vendor/bin/sail php artisan make:controller UserController``
 
+- キャッシュの削除
 
+``./vendor/bin/sail php artisan route:clear``
+``./vendor/bin/sail php artisan config:clear``
+``./vendor/bin/sail php artisan cache:clear``
+
+- ルーティング確認
+
+``./vendor/bin/sail php artisan route:list``
+
+
+- Laravel11でapi.phpを有効にする(コマンドを実行しないとroute:listでルーティングが設定されない)
+
+``./vendor/bin/sail php artisan install:api``

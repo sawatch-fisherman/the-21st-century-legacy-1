@@ -9,6 +9,13 @@ use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
+/**
+ * @OA\Info(
+ *     title="User API",
+ *     version="1.0.0",
+ *     description="API documentation for User management"
+ * )
+ */
 class UserController extends Controller
 {
     protected UserService $userService;
@@ -28,21 +35,42 @@ class UserController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/users",
-     *      operationId="createUser",
-     *      tags={"Users"},
-     *      summary="Create new user",
-     *      description="Create a new user and return JSON response",
-     *      @OA\RequestBody(
-     *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/CreateUserRequest")
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/UserResource")
-     *      ),
-     *      @OA\Response(response=400, description="Bad request"),
+     *     path="/users",
+     *     summary="新しいユーザーを作成",
+     *     description="バリデーションされたデータを使用して新しいユーザーを作成し、作成されたユーザーの情報をJSON形式で返します。",
+     *     operationId="createUser",
+     *     tags={"Users"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name", "email", "password"},
+     *             @OA\Property(property="name", type="string", example="John Doe", description="ユーザーの名前"),
+     *             @OA\Property(property="email", type="string", format="email", example="john@example.com", description="ユーザーのメールアドレス"),
+     *             @OA\Property(property="password", type="string", format="password", example="password123", description="ユーザーのパスワード")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="ユーザー作成成功",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer", example=1, description="作成されたユーザーのID"),
+     *             @OA\Property(property="name", type="string", example="John Doe", description="作成されたユーザーの名前"),
+     *             @OA\Property(property="email", type="string", example="john@example.com", description="作成されたユーザーのメールアドレス"),
+     *             @OA\Property(property="created_at", type="string", format="date-time", example="2023-10-15T13:45:00Z", description="作成日時"),
+     *             @OA\Property(property="updated_at", type="string", format="date-time", example="2023-10-15T13:45:00Z", description="更新日時")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="バリデーションエラー",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Validation error")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="サーバーエラー"
+     *     )
      * )
      */
     public function store(StoreUserRequest $request)

@@ -1,0 +1,120 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User API",
+        "description": "API documentation for User management",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "新しいユーザーを作成",
+                "description": "バリデーションされたデータを使用して新しいユーザーを作成し、作成されたユーザーの情報をJSON形式で返します。",
+                "operationId": "createUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "ユーザーの名前",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "ユーザーのメールアドレス",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "description": "ユーザーのパスワード",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "ユーザー作成成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "作成されたユーザーのID",
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "description": "作成されたユーザーの名前",
+                                            "type": "string",
+                                            "example": "John Doe"
+                                        },
+                                        "email": {
+                                            "description": "作成されたユーザーのメールアドレス",
+                                            "type": "string",
+                                            "example": "john@example.com"
+                                        },
+                                        "created_at": {
+                                            "description": "作成日時",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-10-15T13:45:00Z"
+                                        },
+                                        "updated_at": {
+                                            "description": "更新日時",
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-10-15T13:45:00Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "バリデーションエラー",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "サーバーエラー"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Users",
+            "description": "Users"
+        }
+    ]
+}

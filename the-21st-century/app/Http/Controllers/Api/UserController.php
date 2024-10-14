@@ -53,8 +53,8 @@ class UserController extends Controller
         // ユーザーを作成
         $user = $this->userService->createUser($validated);
 
-        // TODO：JSONレスポンス化する
-        return new $user;
+        // JSON形式でレスポンスを返す
+        return new UserResource($user);
     }
 
     /**

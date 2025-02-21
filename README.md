@@ -21,4 +21,5 @@ APP_PORT=8085
 ※マイグレーションを未実施の場合、下記のエラーが表示される。
 ``SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel.sessions' doesn't exist (Connection: mysql, SQL: select * from `sessions` where `id` = HNvVANYnMjcln0wtmeePubgC2m2JA1hk4VUiVOIy limit ``
 
-
+2025/02/22
+ファイルの分離により、本リポジトリは終焉。
